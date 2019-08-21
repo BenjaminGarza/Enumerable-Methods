@@ -47,6 +47,14 @@ module Enumerable
           true
           end
 
+          def my_count(&block)
+            count = 0
+            self.my_each do |element|  
+              count += 1 if block.call(element) == true
+            end
+            count
+            end
+
 end
 
 include Enumerable 
@@ -69,3 +77,5 @@ my_array.my_all?{|element| element % 2 == 0}  #returns false
 my_array.my_any?{|element| element > 7} #returns true
 
 my_array.my_none?{|element| element > 100} #returns true
+
+my_array.my_count{|element| element < 7} #returns 5
