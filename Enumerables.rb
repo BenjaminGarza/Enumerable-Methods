@@ -55,6 +55,14 @@ module Enumerable
             count
             end
 
+            def my_map(&block)
+              map = []
+              self.my_each do |element|  
+                map << block.call(element)
+              end
+              map
+              end
+
 end
 
 include Enumerable 
@@ -79,3 +87,5 @@ my_array.my_any?{|element| element > 7} #returns true
 my_array.my_none?{|element| element > 100} #returns true
 
 my_array.my_count{|element| element < 7} #returns 5
+
+my_array.my_map{|element| element %2} #returns [1, 1, 0, 1, 1, 1, 0]
