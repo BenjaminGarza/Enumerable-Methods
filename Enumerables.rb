@@ -33,6 +33,13 @@ module Enumerable
       true
       end
 
+      def my_any?(&block)
+        self.my_each do |element|  
+        return true if block.call(element) == true
+        end
+        false
+        end
+
 end
 
 include Enumerable 
@@ -51,3 +58,5 @@ my_array.my_each_with_index{|item,index| print "[",index,",",item,"]" } #returns
 my_array.my_select{|num| num>5} #returns [7,8]
 
 my_array.my_all?{|element| element % 2 == 0}  #returns false
+
+my_array.my_any?{|element| element > 7} #returns true
