@@ -74,6 +74,15 @@ module Enumerable
                   my_inject(1){|result,element| result * element }
                   end
 
+                  def my_map_v2(proc = nil)
+              
+                    (0...self.length).each  do |i|  
+                      self[i] = proc.call self[i] if !proc.nil?
+                      self[i] = yield(self[i]) if proc.nil? 
+                    end
+                    return self
+                    end
+
 end
 
 include Enumerable 
@@ -104,3 +113,12 @@ my_array.my_map{|element| element %2} #returns [1, 1, 0, 1, 1, 1, 0]
 my_array.my_inject(0){|result,element| result + element } #returns 35
 
 my_array.multiply_els # returns 50,400
+
+def test_proc
+  Proc.new
+ end 
+ test_proc = test_proc {|element| element + 10} 
+ 
+ my_array.my_map_v2(test_proc) #returns 17, 15, 18, 15, 13, 13, 14
+
+ my_array.my_map_v2{|element| element + 10 } #returns 17, 15, 18, 15, 13, 13, 14
