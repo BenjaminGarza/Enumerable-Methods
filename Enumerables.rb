@@ -63,6 +63,17 @@ module Enumerable
               map
               end
 
+              def my_inject(result,&block)
+                self.my_each do |element|  
+                  result = block.call(result,element)
+                end
+                result
+                end
+
+                def multiply_els
+                  my_inject(1){|result,element| result * element }
+                  end
+
 end
 
 include Enumerable 
@@ -89,3 +100,7 @@ my_array.my_none?{|element| element > 100} #returns true
 my_array.my_count{|element| element < 7} #returns 5
 
 my_array.my_map{|element| element %2} #returns [1, 1, 0, 1, 1, 1, 0]
+
+my_array.my_inject(0){|result,element| result + element } #returns 35
+
+my_array.multiply_els # returns 50,400
