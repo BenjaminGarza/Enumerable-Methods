@@ -5,7 +5,7 @@ module Enumerable
     yield(self[i])
     i += 1
     end
-  return self
+   return self
   end
 
   def my_each_with_index
@@ -15,7 +15,7 @@ module Enumerable
     yield(self[i], index)
     i += 1
     end
-  return self
+   return self
   end
 
   def my_select(&block) 
@@ -24,68 +24,66 @@ module Enumerable
     result << element if block.call(element) == true 
     end
     result
-    end
+  end
 
-    def my_all?(&block)
+  def my_all?(&block)
       self.my_each do |element|  
       return false unless block.call(element) == true
       end
       true
+    end
+
+  def my_any?(&block)
+    self.my_each do |element|  
+      return true if block.call(element) == true
+     end
+    false
+  end
+
+  def my_none?(&block)
+     self.my_each do |element|  
+       return false unless block.call(element) == false
       end
+    true
+  end
 
-      def my_any?(&block)
-        self.my_each do |element|  
-        return true if block.call(element) == true
-        end
-        false
-        end
+  def my_count(&block)
+    count = 0
+     self.my_each do |element|  
+        count += 1 if block.call(element) == true
+      end
+    count
+  end
 
-        def my_none?(&block)
-          self.my_each do |element|  
-            return false unless block.call(element) == false
-          end
-          true
-          end
+  def my_map(&block)
+     map = []
+    self.my_each do |element|  
+     map << block.call(element)
+    end
+    map
+  end
 
-          def my_count(&block)
-            count = 0
-            self.my_each do |element|  
-              count += 1 if block.call(element) == true
-            end
-            count
-            end
+  def my_inject(result,&block)
+    self.my_each do |element|  
+      result = block.call(result,element)
+     end
+    result
+  end
 
-            def my_map(&block)
-              map = []
-              self.my_each do |element|  
-                map << block.call(element)
-              end
-              map
-              end
+  def multiply_els
+    my_inject(1){|result,element| result * element }
+    end
 
-              def my_inject(result,&block)
-                self.my_each do |element|  
-                  result = block.call(result,element)
-                end
-                result
-                end
-
-                def multiply_els
-                  my_inject(1){|result,element| result * element }
-                  end
-
-                  def my_map_v2(proc = nil)
-              
-                    (0...self.length).each  do |i|  
-                      self[i] = proc.call self[i] if !proc.nil?
-                      self[i] = yield(self[i]) if proc.nil? 
-                    end
-                    return self
-                    end
+    def my_map_v2(proc = nil)
+      (0...self.length).each  do |i|  
+      self[i] = proc.call self[i] if !proc.nil?
+      self[i] = yield(self[i]) if proc.nil? 
+    end
+   return self
+  end
 
 end
 
-include Enumerable 
 
 my_array = [7,5,8,5,3,3,4]
 
@@ -114,9 +112,9 @@ my_array.my_inject(0){|result,element| result + element } #returns 35
 
 my_array.multiply_els # returns 50,400
 
-def test_proc
+  def test_proc
   Proc.new
- end 
+  end 
  test_proc = test_proc {|element| element + 10} 
  
  my_array.my_map_v2(test_proc) #returns 17, 15, 18, 15, 13, 13, 14
