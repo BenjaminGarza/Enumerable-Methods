@@ -37,7 +37,11 @@ module Enumerable
 
   def my_any?(&block)
     my_each do |element|
+    if block_given? == true
       return true if block.call(element) == true
+    else
+      return true if (element) == true
+    end
     end
     false
   end
