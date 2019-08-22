@@ -33,21 +33,21 @@ module Enumerable
       return false unless block.call(element) == true
     end
     true
-    end
+   end
 
   def my_any?(&block)
     my_each do |element|
       return true if block.call(element) == true
     end
     false
-    end
+  end
 
   def my_none?(&block)
     my_each do |element|
       return false unless block.call(element) == false
     end
     true
-    end
+  end
 
   def my_count(&block)
     count = 0
@@ -55,7 +55,7 @@ module Enumerable
       count += 1 if block.call(element) == true
     end
     count
-    end
+  end
 
   def my_map(&block)
     map = []
@@ -63,18 +63,18 @@ module Enumerable
       map << block.call(element)
     end
     map
-    end
+  end
 
   def my_inject(result, &block)
     my_each do |element|
       result = block.call(result, element)
     end
     result
-    end
+  end
 
   def multiply_els
     my_inject(1) { |result, element| result * element }
-    end
+  end
 
   def my_map_v2(proc = nil)
     (0...length).each do |i|
@@ -82,10 +82,9 @@ module Enumerable
       self[i] = yield(self[i]) if proc.nil?
     end
     self
-    end
+  end
 end
 
-include Enumerable
 
 my_array = [7, 5, 8, 5, 3, 3, 4]
 
@@ -113,9 +112,9 @@ my_array.my_inject(0) { |result, element| result + element } # returns 35
 
 my_array.multiply_els # returns 50,400
 
-  def test_proc
+def test_proc
   Proc.new
- end
+end
 test_proc = test_proc { |element| element + 10 }
 
 my_array.my_map_v2(test_proc) # returns 17, 15, 18, 15, 13, 13, 14
