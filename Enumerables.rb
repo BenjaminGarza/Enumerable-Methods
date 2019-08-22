@@ -30,7 +30,7 @@ module Enumerable
 
   def my_all?(&block)
     my_each do |element|
-      return false unless block.call(element) == true
+      return false unless block_given? == true && block.call(element) == true
     end
     true
   end
