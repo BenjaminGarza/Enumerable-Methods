@@ -24,6 +24,8 @@ Style/Documentation:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
+ Style/FileName:
+  Enabled: false
 
 Layout/AlignHash:
   EnforcedColonStyle: key
@@ -33,5 +35,4 @@ Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
 
-  Style/FileName:
-  Enabled: false
+ 
