@@ -2,6 +2,10 @@
 linters:
   rubocop:
     display_cop_names: true
+    
+fixers:
+    enable: true
+
 files:
   ignore:
     - "bin/*"
