@@ -85,7 +85,6 @@ module Enumerable
   end
 end
 
-
 my_array = [7, 5, 8, 5, 3, 3, 4]
 
 my_array.each { |n| print n + 1 }
