@@ -44,7 +44,11 @@ module Enumerable
 
   def my_none?(&block)
     my_each do |element|
+    if block_given? == true
       return false unless block.call(element) == false
+    else
+      return false unless (element) == false
+    end
     end
     true
   end
