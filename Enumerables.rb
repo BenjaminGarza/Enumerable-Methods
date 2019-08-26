@@ -59,8 +59,14 @@ module Enumerable
 
   def my_count(&block)
     count = 0
+    if block_given? == true
     my_each do |element|
       count += 1 if block.call(element) == true
+    end
+    else
+      my_each do |element|
+      count += 1
+      end
     end
     count
   end
