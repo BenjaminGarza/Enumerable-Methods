@@ -80,8 +80,10 @@ module Enumerable
   end
 
   def my_inject(result, &block)
-    my_each do |element|
+    if block_given? == true
+     my_each do |element|
       result = block.call(result, element)
+     end
     end
     result
   end
