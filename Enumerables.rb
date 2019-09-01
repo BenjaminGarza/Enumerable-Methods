@@ -80,16 +80,23 @@ module Enumerable
     map
   end
 
-  def my_inject(&block)
-    result = self[0]
-    if block_given? == true
+  def my_inject(accumulator = 0, &block)
+    if accumulator == 0
+      result = self[0]
+      if block_given? == true
      (1...self.length).my_each do |index|
       result = block.call(result, self[index])
      end
-    end
+     end
+    else
+    result = accumulator
+     (0...self.length).my_each do |index|
+      result = block.call(result, self[index])
+     end
+  end
     result
   end
-
+  
   def multiply_els
     my_inject { |result, element| result * element }
   end
