@@ -101,7 +101,7 @@ module Enumerable
 
   def multiply_els
     my_inject { |result, element| result * element }
-   end
+  end
 
   def my_map_v2(proc = nil)
     (0...length).each do |i|
