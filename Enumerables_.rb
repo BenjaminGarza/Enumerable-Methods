@@ -40,8 +40,8 @@ module Enumerable
 		my_each do |element|
 			if block_given? == true
 				return true if block.call(element) == true
-			else
-				return true if (element) == true
+			elsif (element) == true
+				return true
 			end
 		end
 		false
@@ -64,17 +64,15 @@ module Enumerable
 			my_each do |element|
 				count += 1 if check == element 
 			end
-		else
-			if block_given? == true
-				my_each do |element|
-					count += 1 if block.call(element) == true 
-				end
-			else
-				my_each do count += 1 end
+		elsif block_given? == true
+			my_each do |element|
+				count += 1 if block.call(element) == true 
 			end
+		else
+			my_each do count += 1 end
 		end
 		count
-	end
+	end	
 
 	def my_map(&block)
 		map = []
@@ -85,7 +83,7 @@ module Enumerable
 	end
 
 	def my_inject(accumulator = 0, &block)
-		if accumulator == 0
+		if accumulator.zero?
 			result = self[0]
 			if block_given? == true
 				(1...self.length).my_each do |index|
@@ -101,8 +99,8 @@ module Enumerable
 		result
 	end
 		def multiply_els
-		my_inject { |result, element| result * element }
-	end
+		  my_inject { |result, element| result * element }
+		 end
 
 	def my_map_v2(proc = nil)
 		(0...length).each do |i|
