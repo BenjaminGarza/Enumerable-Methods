@@ -1,0 +1,37 @@
+--- 
+AllCops: 
+  DisplayCopNames: true
+  TargetRubyVersion: 2.5.1
+  Exclude: 
+    - bin/*
+    - db/*
+    - config/*
+    - Guardfile
+    - Rakefile
+Layout/AlignHash: 
+  EnforcedColonStyle: key
+Layout/ExtraSpacing: 
+  AllowForAlignment: false
+Layout/MultilineMethodCallIndentation: 
+  Enabled: true
+  EnforcedStyle: indented
+Metrics/AbcSize: 
+  Include: 
+    - app/controllers/*
+  Max: 30
+Metrics/BlockLength: 
+  ExcludedMethods: 
+    - describe
+Metrics/ClassLength: 
+  Max: 150
+Metrics/LineLength: 
+  Max: 120
+Metrics/MethodLength: 
+  Include: 
+    - app/controllers/*
+  Max: 20
+Style/ClassAndModuleChildren: 
+  Enabled: false
+Style/Documentation: 
+  Enabled: false
+
